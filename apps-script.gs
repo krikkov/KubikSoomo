@@ -151,7 +151,8 @@ function flushPending_() {
 }
 
 function patch_(data) {
-  var comp = getOne_(data.compId);
+  // Совместимость с клиентами, которые передают `id` или `compId`.
+  var comp = getOne_(data.compId || data.id);
   if (!comp) throw new Error('Соревнование не найдено');
   var patches = data.patches || [];
   var lists = [comp.matches || [], comp.finalMatches || []];
